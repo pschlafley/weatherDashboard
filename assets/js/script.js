@@ -4,7 +4,7 @@ var weatherContainerEl = document.querySelector("#weatherContainer");
 var weatherInfo = document.querySelector("#weather-info");
 var currentDate = moment().format("MM/DD/YYYY");
 
-function getUserCity(city) {
+function getCityWeather() {
     var city = searchEl.value;
 
     var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=bb668105a98f241dd921ea57a3fc035c";
@@ -49,32 +49,46 @@ function getUserCity(city) {
         windSpeed.classList = "lead";
         windSpeed.innerHTML = "Wind Speed: " + windSpeedInfo + " MPH";
         weatherContainerEl.appendChild(windSpeed);
-    })
-    .then(function(response) {
-        console.log(response);
+
+        var lat = response.coord.lat;
+        var lon = response.coord.lon;
+
+        getUvIndex(lat, lon);
     })
 };
 
-// function getUvIndex(lon, lat) {
-//     var uvIndexUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=bb668105a98f241dd921ea57a3fc035c&lat=" + lat + "&lon=" + lon;
-//     fetch(uvIndexUrl)
-//     .then (function(response) {
-//         return response.json();
-//     })
-//     .then (function() {
-//         var lon = response.coord.lon;
-//         var lat = response.coord.lat;
-//         var displayUv = document.createElement("p");
-//         displayUv.innerHTML = "Uv Index: " 
-//         weatherContainerEl.appendChild(displayUv);
-//     })
-// };
+function getUvIndex(lat, lon) {
+    var uvIndexUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=bb668105a98f241dd921ea57a3fc035c&lat=" + lat + "&lon=" + lon;
+    fetch(uvIndexUrl)
+    .then (function(response) {
+        return response.json();
+    })
+    .then (function(response) {
+        displayUvIndex(response);
+    })
+};
+
+function displayUvIndex(uv) {
+    var uvIndexEl = document.createElement("p");
+    uvIndexEl.innerHTML = "UV Index:  <span id='uv-index'>" + uv.value + "</span>"; 
+    weatherContainerEl.appendChild(uvIndexEl);
+
+    if (uv.value <= 2) {
+        document.querySelector("#uv-index").classList = "bg-success";
+    } 
+    else if (uv.value > 2 && uv.value <= 7) {
+        document.querySelector("#uv-index").classList = "bg-warning";
+    }
+    else if (uv.value > 7 && uv.value <= 10) {
+        document.querySelector("#uv-index").classList = "bg-danger";
+    }
+};
 
 
 
 function formSubmitHandler(event) {
     event.preventDefault();
-    getUserCity();
+    getCityWeather();
 };
 
 
