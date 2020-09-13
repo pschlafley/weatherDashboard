@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.card-container {
+    width: 25%;
+}
+
+.weatherContainer {
+    width: 25%;
+    margin: 20px;
+}

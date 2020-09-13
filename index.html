@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+    crossorigin="anonymous"
+    />    
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>WeatherDashboard</title>
+</head>
+<body>
+    <header class="bg-dark p-3">
+        <h1 class="text-white text-center">Weather Dashboard</h1>
+    </header>
+
+    <main class="row">
+        <div class="card-container col-3">
+            <div class="card bg-light">
+                <h4>Search for a City:</h4>
+                <form class="input-group mb-3" id="form-input">
+                    <input type="text" id="citySearched" class="form-control" placeholder="What City are you looking for?" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn bg-primary text-white" type="submit" id="search-button"> 
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="weatherContainer" class="weatherContainer col-3"></div>
+
+
+
+    </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
