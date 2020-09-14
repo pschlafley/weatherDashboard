@@ -3,6 +3,7 @@ var searchButtonEl = document.querySelector("#form-input");
 var weatherContainerEl = document.querySelector("#weatherContainer");
 var weatherInfo = document.querySelector("#weather-info");
 var currentDate = moment().format("MM/DD/YYYY");
+var forecastContainer = document.querySelector("#forecast");
 
 function getCityWeather() {
     var city = searchEl.value;
@@ -84,11 +85,56 @@ function displayUvIndex(uv) {
     }
 };
 
+function getForeCast(city) {
+    var city = searchEl.value;
+
+    var foreCastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=bb668105a98f241dd921ea57a3fc035c";
+
+    fetch(foreCastUrl)
+    .then (function(response) {
+        return response.json();
+    })
+    .then(function(response) {
+
+        var foreCastDays = response.list;
+        for (var i = 5; i < foreCastDays.length; i = i + 8) {
+            var currentDay = foreCastDays[i];
+
+            console.log(currentDay);
+
+            var currentDayContainer = document.createElement("div");
+            currentDayContainer.classList = "card bg-primary mh-100 text-white m-20";
+            forecastContainer.appendChild(currentDayContainer);
+
+            var date = document.createElement("span");
+            date.innerHTML = currentDay.dt_txt;
+            currentDayContainer.appendChild(date);
+
+            var icon = foreCastDays[i].weather[0].icon;
+            var weatherIcon = document.createElement("img");
+            weatherIcon.src = "https://openweathermap.org/img/w/" + icon + ".png";
+            weatherIcon.classList = "w-25";
+            currentDayContainer.appendChild(weatherIcon);
+
+
+            var temp = foreCastDays[i].main.temp;
+            var temperatureEl = document.createElement("span");
+            temperatureEl.innerHTML = "Temperature: " + temp + "°F";
+            currentDayContainer.appendChild(temperatureEl);
+
+            var humidity = foreCastDays[i].main.humidity;
+            var humidityEl = document.createElement("span");
+            humidityEl.innerHTML = "Humidity: " + humidity + "%";
+            currentDayContainer.appendChild(humidityEl);
+        } 
+    })
+};
 
 
 function formSubmitHandler(event) {
     event.preventDefault();
     getCityWeather();
+    getForeCast();
 };
 
 
