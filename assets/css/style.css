@@ -21,6 +21,7 @@
 
 .border-weight {
     border-style: solid;
-    border-style: 2px;
     margin: 35px;
+    padding: 20px 30px; 
+    border-radius: 25px;
 }

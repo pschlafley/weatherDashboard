@@ -21,28 +21,28 @@
         <h1 class="text-white text-center">Weather Dashboard</h1>
     </header>
 
-    <main class="row">
-        <div class="card-container col-3">
-            <div class="card bg-light">
-                <h4>Search for a City:</h4>
-                <form class="input-group mb-3 m-20px" id="form-input">
-                    <input type="text" id="citySearched" class="form-control" placeholder="What City are you looking for?" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn bg-primary text-white" type="submit" id="search-button"> 
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
+    <main>
         <div class="row">
-            <div id="weatherContainer" class="weatherContainer col-9"></div>
+            <div class="card-container col-3">
+                <div class="card bg-light">
+                    <h4>Search for a City:</h4>
+                    <form class="input-group mb-3 m-20px" id="form-input">
+                        <input type="text" id="citySearched" class="form-control" placeholder="What City are you looking for?" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn bg-primary text-white" type="submit" id="search-button"> 
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div id="weatherContainer" class="weatherContainer col-9"></div>
+            </div>
+    
+            <div  class="row" id="forecast"></div>
         </div>
-
-        <div  class="row" id="forecast"></div>
-        
-
     </main>
 
 
