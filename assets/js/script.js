@@ -15,9 +15,9 @@ function getCityWeather() {
         return response.json();
     })
     .then(function(response) {
-        weatherContainerEl.innerHTML = '';
-        // console.log(response);
-        // console.log(response.main);
+        weatherContainerEl.innerHTML = "";
+       
+        weatherContainerEl.classList = "border-weight"
 
         // create <p> element to hold the City name and Date
         var weatherContent = document.createElement("h3");
@@ -95,15 +95,17 @@ function getForeCast(city) {
         return response.json();
     })
     .then(function(response) {
-
         var foreCastDays = response.list;
+
+            forecastContainer.textContent = "";
+
         for (var i = 5; i < foreCastDays.length; i = i + 8) {
             var currentDay = foreCastDays[i];
 
             console.log(currentDay);
 
             var currentDayContainer = document.createElement("div");
-            currentDayContainer.classList = "card bg-primary mh-100 text-white m-20";
+            currentDayContainer.classList = "card bg-primary mh-100 text-white m-20 col-3";
             forecastContainer.appendChild(currentDayContainer);
 
             var date = document.createElement("span");
