@@ -105,7 +105,7 @@ function getForeCast(city) {
             console.log(currentDay);
 
             var currentDayContainer = document.createElement("div");
-            currentDayContainer.classList = "card bg-primary mh-100 text-white m-20 col-2 ml-4 p-3";
+            currentDayContainer.classList = "card bg-primary mh-100 text-white m-20 ml- p-3";
             forecastContainer.appendChild(currentDayContainer);
 
             var date = document.createElement("span");
